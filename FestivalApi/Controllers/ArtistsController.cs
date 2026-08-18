@@ -2,16 +2,15 @@ using Microsoft.AspNetCore.Mvc;
 using FestivaLApi.Models;
 
 namespace FestivalApi.Controllers
-
 {
 
-    
-[ApiController]
-[Route("api/artists")]
-public class ArtistsController : ControllerBase
-{
 
-    List<Artist> artists = new List<Artist>
+    [ApiController]
+    [Route("api/artists")]
+    public class ArtistsController : ControllerBase
+    {
+
+        List<Artist> artists = new List<Artist>
     {
         new Artist { Id = 1, Name = "Veronica Maggio" },
         new Artist { Id = 2, Name = "Hooja" },
@@ -25,10 +24,10 @@ public class ArtistsController : ControllerBase
         new Artist { Id = 10, Name = "Oskar Linnros" }
     };
 
-    [HttpGet]
-    public ActionResult<List<Artist>> GetAllArtists()
+        [HttpGet]
+        public ActionResult<List<Artist>> GetAllArtists()
         {
-            if (artists == null || !artists.Any() )
+            if (artists == null || !artists.Any())
             {
                 return NotFound();
             }
@@ -36,8 +35,8 @@ public class ArtistsController : ControllerBase
             return Ok(artists.Select(a => a.Name));
         }
 
-    [HttpGet("{id:int}")]
-    public ActionResult<Artist> GetArtistById([FromRoute]int id)
+        [HttpGet("{id:int}")]
+        public ActionResult<Artist> GetArtistById([FromRoute] int id)
         {
             var artist = artists.FirstOrDefault(a => a.Id == id);
 
@@ -91,6 +90,6 @@ public class ArtistsController : ControllerBase
 
             return Ok(artists);
         }
-}
+    }
 
 }

@@ -50,7 +50,7 @@ public class ArtistsController : ControllerBase
         }
 
     [HttpPut("{id:int}")]
-    public ActionResult<Artist> UpdateArtistById(int id, string artistName)
+    public ActionResult<Artist> UpdateArtistById(int id, [FromBody] Artist updateArtist)
         {
             var artist = artists.FirstOrDefault(a => a.Id == id);
 
@@ -59,7 +59,7 @@ public class ArtistsController : ControllerBase
                 return NotFound();
             }
 
-            artist.Name=artistName;
+            artist.Name=updateArtist.Name;
 
             return Ok(artists);
         }

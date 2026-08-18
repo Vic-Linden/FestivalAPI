@@ -61,7 +61,20 @@ public class ArtistsController : ControllerBase
 
             artist.Name=artistName;
 
-            return Ok(artistName);
+            return Ok(artists);
+        }
+
+    [HttpPost]
+    public ActionResult<Artist> CreateArtist([FromBody] Artist newArtist)
+        {
+            if (newArtist == null)
+            {
+                return BadRequest();
+            }
+
+            newArtist.Id = artists.Max(a => a.Id) + 1;
+            artists.Add(newArtist);
+            return Ok(artists);
         }
 }
 

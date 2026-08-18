@@ -74,7 +74,7 @@ public class ArtistsController : ControllerBase
 
             newArtist.Id = artists.Max(a => a.Id) + 1;
             artists.Add(newArtist);
-            return Ok(artists);
+            return Created();
         }
 
     [HttpDelete("{id:int}")]

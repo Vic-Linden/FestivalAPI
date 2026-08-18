@@ -47,6 +47,49 @@ namespace FestivalApi.Controllers
 
             return Ok(artist.Name);
         }
+
+    [HttpPut("{id:int}")]
+    public ActionResult<Artist> UpdateArtistById(int id, [FromBody] Artist updateArtist)
+        {
+            var artist = artists.FirstOrDefault(a => a.Id == id);
+
+            if (artist == null)
+            {
+                return NotFound();
+            }
+
+            artist.Name=updateArtist.Name;
+
+            return Ok(artists);
+        }
+
+    [HttpPost]
+    public ActionResult<Artist> CreateArtist([FromBody] Artist newArtist)
+        {
+            if (newArtist == null)
+            {
+                return BadRequest();
+            }
+
+            newArtist.Id = artists.Max(a => a.Id) + 1;
+            artists.Add(newArtist);
+            return Created();
+        }
+
+    [HttpDelete("{id:int}")]
+    public ActionResult<Artist> DeleteArtistById(int id)
+        {
+            var artist = artists.FirstOrDefault(a => a.Id == id);
+
+            if (artist == null)
+            {
+                return NotFound();
+            }
+
+            artists.Remove(artist);
+
+            return Ok(artists);
+        }
     }
 
 }

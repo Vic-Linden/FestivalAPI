@@ -76,6 +76,21 @@ public class ArtistsController : ControllerBase
             artists.Add(newArtist);
             return Ok(artists);
         }
+
+    [HttpDelete("{id:int}")]
+    public ActionResult<Artist> DeleteArtistById(int id)
+        {
+            var artist = artists.FirstOrDefault(a => a.Id == id);
+
+            if (artist == null)
+            {
+                return NotFound();
+            }
+
+            artists.Remove(artist);
+
+            return Ok(artists);
+        }
 }
 
 }

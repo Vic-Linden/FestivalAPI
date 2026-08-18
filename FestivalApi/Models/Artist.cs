@@ -1,6 +1,5 @@
 namespace FestivaLApi.Models 
 {
-
     public class Artist
     {
         public int Id { get; set; }

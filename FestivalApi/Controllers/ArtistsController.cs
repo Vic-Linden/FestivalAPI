@@ -47,7 +47,21 @@ public class ArtistsController : ControllerBase
             }
 
             return Ok(artist.Name);
-            
+        }
+
+    [HttpPut("{id:int}")]
+    public ActionResult<Artist> UpdateArtistById(int id, string artistName)
+        {
+            var artist = artists.FirstOrDefault(a => a.Id == id);
+
+            if (artist == null)
+            {
+                return NotFound();
+            }
+
+            artist.Name=artistName;
+
+            return Ok(artistName);
         }
 }
 

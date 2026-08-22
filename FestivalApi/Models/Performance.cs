@@ -7,5 +7,7 @@ namespace FestivaLApi.Models
         public string Genre { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
+        public int ArtistId { get; set; }
+        public int StageId { get; set; }
     }
 }
